@@ -1,9 +1,9 @@
 "use strict";
 
-const Less = require("less"),
-    FS = require("fs"),
-    Chokidar = require("chokidar"),
-    Path = require("path");
+const FS = require("fs"),
+    Path = require("path"),
+    Less = require("less"),
+    Chokidar = require("chokidar");
 
 const once = (fn, that = null) => {
     let going = false;
