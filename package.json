@@ -1,6 +1,6 @@
 {
   "name": "less-w",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Efficiently watch a Less source file and recompile on change",
   "main": "src/index.js",
   "bin": {

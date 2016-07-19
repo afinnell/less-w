@@ -30,20 +30,22 @@ const once = (fn, that = null) => {
 };
 
 const diff = (f, s) => {
-    let newImports = new Set();
-    let removedImports = new Set();
+    let newImports = [];
+    let removedImports = [];
     f.forEach((v) => {
-        if (!s.has(v)) {
-            removedImports = removedImports.add(v);
+        if (!s.includes(v)) {
+            removedImports.push(v);
         }
     });
     s.forEach((v) => {
-        if (!f.has(v)) {
-            newImports = newImports.add(v);
+        if (!f.includes(v)) {
+            newImports.push(v);
         }
     });
     return { removedImports, newImports };
 };
+
+const uniq = (a) => a.filter((v, i, a) => a.indexOf(v) === i);
 
 const watch = (input, output) => {
     const compile = once((input, output, cb) => {
@@ -54,7 +56,7 @@ const watch = (input, output) => {
                 const { css, imports } = new Less.ParseTree(root, imported).toCSS(options);
                 FS.writeFile(output, css, { encoding: "utf8" }, (err) => {
                     if (err) return process.nextTick(cb, err);
-                    const files = new Set([input].concat(imports).map(Path.normalize));
+                    const files = uniq([input].concat(imports).map(Path.normalize));
                     cb(null, files);
                 });
             });
