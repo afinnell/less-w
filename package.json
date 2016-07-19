@@ -1,6 +1,6 @@
 {
   "name": "less-w",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Efficiently watch a Less source file and recompile on change",
   "main": "src/index.js",
   "bin": {
@@ -25,5 +25,8 @@
   "dependencies": {
     "chokidar": "^1.6.0",
     "less": "^2.7.1"
+  },
+  "engines": {
+    "node": ">=6.0.0"
   }
 }
