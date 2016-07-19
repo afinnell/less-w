@@ -65,13 +65,16 @@ const watch = (input, output) => {
     compile(input, output, (err, files) => {
         if (err) throw err;
         const watcher = Chokidar.watch(Array.from(files));
-        const recompile = () => compile(input, output, (err, newFiles) => {
-            if (err) throw err;
-            const { newImports, removedImports } = diff(files, newFiles);
-            watcher.unwatch(Array.from(removedImports));
-            watcher.add(Array.from(newImports));
-        });
-        watcher.on("change", recompile).on("unlink", recompile);
+        const recompile = (event) => (file) => {
+            console.log(`less-w: ${event} on ${file}, recompiling`);
+            compile(input, output, (err, newFiles) => {
+                if (err) throw err;
+                const { newImports, removedImports } = diff(files, newFiles);
+                watcher.unwatch(Array.from(removedImports));
+                watcher.add(Array.from(newImports));
+            });
+        };
+        watcher.on("change", recompile("change")).on("unlink", recompile("unlink"));
     });
 };
 
