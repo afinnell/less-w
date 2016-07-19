@@ -1,0 +1,29 @@
+{
+  "name": "less-w",
+  "version": "1.0.0",
+  "description": "Efficiently watch a Less source file and recompile on change",
+  "main": "src/index.js",
+  "bin": {
+    "less-w": "bin/less-w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chncdcksn/less-w.git"
+  },
+  "keywords": [
+    "less",
+    "watch",
+    "recompile",
+    "change"
+  ],
+  "author": "Chance Dickson <me@chncdcksn.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chncdcksn/less-w/issues"
+  },
+  "homepage": "https://github.com/chncdcksn/less-w#readme",
+  "dependencies": {
+    "chokidar": "^1.6.0",
+    "less": "^2.7.1"
+  }
+}

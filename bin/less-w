@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+"use strict";
+
+const watch = require("../src/index");
+
+if (!process.argv[2] || !process.argv[3]) {
+    console.error(`Usage: less-watch [input file] [output file]`);
+    process.exit(1);
+}
+try {
+    watch(process.argv[2], process.argv[3]);
+} catch (e) {
+    console.error(e);
+    process.exit(2);
+}
